@@ -11,7 +11,7 @@ export class ReponsesService {
   constructor(private http: HttpClient) { }
 
   getReponses(id: string | number): Observable<Reponse[]> {
-    const url = 'https://equipe01.chez-wam.info/api/reponses?id_question=eq.' + id;
+    const url = 'https://equipe02.chez-wam.info/api/reponses?id_question=eq.' + id;
     return this.http.get<Reponse[]>(url);
   }
 }

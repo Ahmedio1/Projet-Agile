@@ -12,7 +12,7 @@ export class QuestionsService {
   constructor(private http: HttpClient) { }
 
   getQuestion(id: string | number): Observable<Question> {
-    const url = 'https://equipe01.chez-wam.info/api/questions?id_question=eq.' + id;
+    const url = 'https://equipe02.chez-wam.info/api/questions?id_question=eq.' + id;
     return this.http.get<Question[]>(url).pipe(map(rep => rep[0]));
   }
 }
