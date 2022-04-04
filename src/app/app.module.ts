@@ -8,10 +8,13 @@ import { QuestionsComponent } from './questions/questions.component';
 import { ReponsesComponent } from './reponses/reponses.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from "@angular/material/card";
-import {HttpClientModule} from "@angular/common/http";
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from '@angular/material/card';
+import {HttpClientModule} from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import { NuggetsComponent } from './nuggets.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     DashboardComponent,
     QuestionsComponent,
     ReponsesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NuggetsComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
