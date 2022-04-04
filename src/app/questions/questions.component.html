@@ -11,7 +11,7 @@
 
 <mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loading">
     <mat-grid-tile *ngFor="let reponse of reponses">
-      <button (click) = getChoixJoueur(reponse)>
+      <button (click) = show()>
         <app-reponses [reponse]="reponse"></app-reponses>
       </button>
     </mat-grid-tile>

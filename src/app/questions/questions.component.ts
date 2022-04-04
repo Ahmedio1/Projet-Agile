@@ -6,7 +6,7 @@ import {logger} from "codelyzer/util/logger";
 import {ActivatedRoute} from '@angular/router';
 import {Reponse} from '../models/reponse';
 import {ReponsesService} from '../services/reponses.service';
-import {HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 
 @Component({
@@ -16,14 +16,15 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class QuestionsComponent implements OnInit {
   question: Question = <Question>{};
+  questions: Question[] = [];
   reponses: Reponse[] = [];
   laReponse: Reponse = <Reponse>{};
   loading: boolean = false;
   arraySelPoivre: Observable<any>[] = [];
   arrayNuggets: Observable<any>[] = [];
-  array: Observable<any>[] = [];
+  array: Object[] = [];
 
-  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService) { }
+  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -32,9 +33,19 @@ export class QuestionsComponent implements OnInit {
       this.question = question;
       this.reponsesService.getReponses(id).subscribe(reponses => {
         this.reponses = reponses;
-        this.loading = false;
+        
       });
     });
+    this.questionsService.getQuestions().subscribe(question => {
+      question.forEach(element => {
+        this.questions.push(element);
+      });
+    });
+    this.loading = false;
+  }
+
+  show(){
+    console.log(this.questions)
   }
 
   getChoixJoueur(reponse: Reponse) {
@@ -46,47 +57,15 @@ export class QuestionsComponent implements OnInit {
     return (reponse === this.laReponse);
   }
 
-  generateQuestionsArray(sp: number, nug:number):void{
-    //this.array.push()
-  }
+  getRandomint(max: number){
+    var arr = [];
+    while(arr.length < max){
+        var r = Math.floor(Math.random() * 100) + 1;
 
-  generateSelPoivreArray():void{
-    this.arraySelPoivre.push(this.getCat2());
-
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
+    return arr;
   }
-
-  generateNuggetsArray():void{
-    this.arraySelPoivre.push(this.getCat1());
-  }
-
-  getCat1(): Observable<Question[]> {
-    const url = 'https://equipe02.chez-wam.info/api/questions?id_catetgorie=eq.1';
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
-    };
-    return this.http.get<any>(url, httpOptions)
-      .pipe(
-        map(res => res.data),
-        catchError(err => {
-          console.log('Erreur http : ', err);
-          return of([]);
-        }),
-      );
-  }
-
-  getCat2(): Observable<Question[]> {
-    const url = 'https://equipe02.chez-wam.info/api/questions?id_catetgorie=eq.2';
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
-    };
-    return this.http.get<any>(url, httpOptions)
-      .pipe(
-        map(res => res.data),
-        catchError(err => {
-          console.log('Erreur http : ', err);
-          return of([]);
-        }),
-      );
-  }
+  
 
 }

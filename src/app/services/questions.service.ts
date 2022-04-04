@@ -15,4 +15,10 @@ export class QuestionsService {
     const url = 'https://equipe02.chez-wam.info/api/questions?id_question=eq.' + id;
     return this.http.get<Question[]>(url).pipe(map(rep => rep[0]));
   }
+
+  getQuestions(): Observable<Question[]> {
+    const url = 'https://equipe02.chez-wam.info/api/questions';
+    return this.http.get<Question[]>(url).pipe();
+  }
+  
 }

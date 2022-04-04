@@ -14,6 +14,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { FormsModule } from '@angular/forms';
 import { QuizzComponent } from './quizz/quizz.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
