@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {QuestionsComponent} from "./questions/questions.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
   {path: '', component:DashboardComponent},
   {path: 'question/:id', component:QuestionsComponent},
+  {path:'register',component:RegistrationComponent},
   {path: '**', component:NotFoundComponent}
 ];
 

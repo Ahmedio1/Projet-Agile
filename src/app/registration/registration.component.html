@@ -1,0 +1,28 @@
+<h1> Création d'une équipe </h1>
+<p>choisir le nom du groupe</p>
+
+<label for="groupe">Groupe : </label>
+<input id="groupe" type="text" placeholder="ex:ketchup"
+       #groupe>
+
+<br>
+<br>
+<p >entrez les joeurs de votre groupe </p>
+
+<label for="pseudo">Pseudo : </label>
+  <input  id="pseudo" type="text" placeholder="ex: mohammed" #pseudo>
+<button (click)="addJoueur(pseudo)">ajoutez joueur</button>
+<p *ngIf="message!=''" >
+  {{message}}
+</p>
+
+
+<ul>
+  <li *ngFor="let jouer of lesJoueurs"> {{jouer}}</li>
+</ul>
+
+<button>Création de l'équipe </button>
+
+
+
+
