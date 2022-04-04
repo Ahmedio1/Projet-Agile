@@ -9,13 +9,10 @@
   </mat-card-content>
 </mat-card>
 
-<div class="grid grid-cols-1 pr-32 pl-32 text-white font-bold text-2xl">
-  <mat-grid-list cols="2" rowHeight="3:1" *ngIf="!loading">
-    <mat-grid-tile
-      *ngFor="let reponse of reponses">
-      <app-reponses [reponse]="reponse"></app-reponses>
+<mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loading">
+    <mat-grid-tile *ngFor="let reponse of reponses">
+      <button (click) = getChoixJoueur(reponse)>
+        <app-reponses [reponse]="reponse"></app-reponses>
+      </button>
     </mat-grid-tile>
-  </mat-grid-list>
-</div>
-
-
+</mat-grid-list>

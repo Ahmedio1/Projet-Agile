@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Reponse} from "../models/reponse";
+import {Reponse} from '../models/reponse';
 
 @Component({
   selector: 'app-reponses',
