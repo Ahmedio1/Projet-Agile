@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeQuestionsComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }
