@@ -12,6 +12,8 @@ import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { FormsModule } from '@angular/forms';
+import { QuizzComponent } from './quizz/quizz.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     DashboardComponent,
     QuestionsComponent,
     ReponsesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    QuizzComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
