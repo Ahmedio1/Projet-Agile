@@ -48,7 +48,7 @@ export class QuestionsService {
   }
 
   getNugget(id:number){
-    const url ='https://equipe02.chez-wam.info:443/api/questions?id_question=eq.'+id+'&id_catetgorie=eq.2';
+    const url ='https://equipe02.chez-wam.info:443/api/questions?id_question=eq.'+id+'&id_catetgorie=eq.1';
       return this.http.get<Question[]>(url).pipe(map(rep => rep[0]));
   }
 
