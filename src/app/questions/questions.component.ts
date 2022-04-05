@@ -53,8 +53,8 @@ export class QuestionsComponent implements OnInit {
       this.reponsesService.getReponses(this.question.id_question).subscribe(reponse => {
         this.reponses = reponse;
       });
-    });
-  }
+      });
+    }
 
   getChoixJoueur(reponse: Reponse) {
     this.val += 1;
@@ -74,59 +74,59 @@ export class QuestionsComponent implements OnInit {
 
   }
 
-  getRandomint(max: number){
-    var arr = [];
-    while(arr.length < max){
+    getRandomint(max: number){
+      var arr = [];
+      while(arr.length < max){
         var r = Math.floor(Math.random() * 100) + 1;
 
         if(arr.indexOf(r) === -1) arr.push(r);
-    }
-    return arr;
-  }
-
-  //get random questions with id_categorie equal to 2 and push the data in array and console.log it
-  getPoivre(){
-    this.questions.forEach(element => {
-      if(element.id_catetgorie == 2){
-        this.arraySelPoivre.push(element);
       }
-    });
-    this.getRandomPoivre();
-  }
+      return arr;
+    }
 
-  //get random questions with id_categorie equal to 1 and push the data in array and console.log it
-  getNuggets(){
-    this.questions.forEach(element => {
-      if(element.id_catetgorie == 1){
-        this.arrayNuggets.push(element);
+    //get random questions with id_categorie equal to 2 and push the data in array and console.log it
+    getPoivre(){
+      this.questions.forEach(element => {
+        if(element.id_catetgorie == 2){
+          this.arraySelPoivre.push(element);
+        }
+      });
+      this.getRandomPoivre();
+    }
+
+    //get random questions with id_categorie equal to 1 and push the data in array and console.log it
+    getNuggets(){
+      this.questions.forEach(element => {
+        if(element.id_catetgorie == 1){
+          this.arrayNuggets.push(element);
+        }
+      });
+      this.getRandomNuggets();
+    }
+
+    getRandomPoivre(){
+
+      //shuffle the array arraySelPoivre and push this.poivre element in array
+      this.arraySelPoivre.sort(() => Math.random() - 0.5);
+      for(var i = 0; i < this.poivre; i++){
+        this.array.push(this.arraySelPoivre[i]);
       }
-    });
-    this.getRandomNuggets();
-  }
-
-  getRandomPoivre(){
-
-    //shuffle the array arraySelPoivre and push this.poivre element in array
-    this.arraySelPoivre.sort(() => Math.random() - 0.5);
-    for(var i = 0; i < this.poivre; i++){
-      this.array.push(this.arraySelPoivre[i]);
-    }
-  }
-
-  getRandomNuggets(){
-
-    this.arrayNuggets.sort(() => Math.random() - 0.5);
-    for(var i = 0; i < this.nugget; i++){
-      this.array.push(this.arrayNuggets[i]);
     }
 
+    getRandomNuggets(){
+
+      this.arrayNuggets.sort(() => Math.random() - 0.5);
+      for(var i = 0; i < this.nugget; i++){
+        this.array.push(this.arrayNuggets[i]);
+      }
+
+    }
+
+    //log all the data in arraynuggets and arrayselpoivre
+    showArray(){
+      console.log(this.array);
+    }
+
+
+
   }
-
-  //log all the data in arraynuggets and arrayselpoivre
-  showArray(){
-    console.log(this.array);
-  }
-
-
-
-}
