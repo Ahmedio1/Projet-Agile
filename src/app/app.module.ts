@@ -12,6 +12,13 @@ import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { RegistrePersonneComponent } from './registre-personne/registre-personne.component';
+import { CountDownComponent } from './count-down/count-down.component';
+import {FormulaireComponent} from './formulaire/formulaire.component';
+import { PhotoComponent } from './photo/photo.component';
+import { ChronometreComponent } from './chronometre/chronometre.component';
+
+
 
 @NgModule({
   declarations: [
@@ -19,7 +26,14 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     DashboardComponent,
     QuestionsComponent,
     ReponsesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RegistrePersonneComponent,
+    CountDownComponent,
+    FormulaireComponent,
+    CountDownComponent,
+    PhotoComponent,
+    ChronometreComponent
+
   ],
   imports: [
     BrowserModule,
@@ -28,7 +42,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
