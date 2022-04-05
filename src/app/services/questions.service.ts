@@ -9,6 +9,10 @@ import {map} from "rxjs/operators";
 })
 export class QuestionsService {
 
+  static poivre: number;
+  static nuggets: number;
+  static miam: number;
+
   constructor(private http: HttpClient) { }
 
   getQuestion(id: string | number): Observable<Question> {
@@ -20,5 +24,14 @@ export class QuestionsService {
     const url = 'https://equipe02.chez-wam.info/api/questions';
     return this.http.get<Question[]>(url).pipe();
   }
+
+  getPoivre(): number {
+    return QuestionsService.poivre;
+  }
+
+  getNuggets(): number {
+    return QuestionsService.nuggets;
+  }
+  
   
 }

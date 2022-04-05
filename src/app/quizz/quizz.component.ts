@@ -7,12 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizzComponent implements OnInit {
   poivre: number = 0;
-  nuggets: number = 0;
+  nugget: number = 0;
   miam: number = 0;
-
-  onSubmit() {
-    console.log(this.poivre, this.nuggets, this.miam);
-  }
 
   constructor() { }
 
