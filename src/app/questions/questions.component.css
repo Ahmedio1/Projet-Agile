@@ -1,0 +1,6 @@
+.mat-grid-tile:nth-child(2n+1){
+    background-color: red;
+}
+.mat-grid-tile:not(:nth-child(4n+1)){
+    background-color:green;
+}
