@@ -40,8 +40,6 @@ export class RegistrationComponent implements OnInit {
     for (let pers of this.lesJoueurs){
       this.equipe.addEquipe_Joueurs(nom.value,pers);
     }
-
-    console.log(this.equipeJ);
   }
   }
   inlesJoueurs(joueur:string):boolean{
