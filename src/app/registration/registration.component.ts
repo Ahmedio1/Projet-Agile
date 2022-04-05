@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {EquipeService} from "../services/equipe.service";
+import {Equipe} from "../models/equipe";
+import {Equipe_joueur} from "../models/equipe_joueur";
 
 @Component({
   selector: 'app-registration',
@@ -10,8 +13,13 @@ export class RegistrationComponent implements OnInit {
   lesJoueurs:string[]=[];
   joueur:string ="";
   message:string='';
+  equipeJ:Equipe_joueur[] = []
 
-  addJoueur(pseudo:HTMLInputElement):boolean{
+  constructor(public equipe:EquipeService) {
+
+  }
+
+  addJoueur(nom:HTMLInputElement,pseudo:HTMLInputElement):boolean{
     this.joueur=pseudo.value;
 
     if(this.inlesJoueurs(pseudo.value)){
@@ -21,15 +29,20 @@ export class RegistrationComponent implements OnInit {
 
       this.lesJoueurs.push(pseudo.value);
       this.message='';
-
     }
+    this.equipe.addEquipe_Joueurs(nom.value,pseudo.value).subscribe(equipe => this.equipeJ.push(equipe));
 
+    this.joueur=""
     return false;
   }
-  addEquipe(){
+  addEquipe_Joueur(nom:HTMLInputElement) {
+    if (this.lesJoueurs.length!=0){
+    for (let pers of this.lesJoueurs){
+      this.equipe.addEquipe_Joueurs(nom.value,pers);
+    }
 
-
-
+    console.log(this.equipeJ);
+  }
   }
   inlesJoueurs(joueur:string):boolean{
     let ilEstLa: boolean=false;
@@ -41,8 +54,6 @@ export class RegistrationComponent implements OnInit {
     return ilEstLa;
   }
 
-
-  constructor() { }
 
   ngOnInit(): void {
   }

@@ -11,32 +11,67 @@ import {Equipe_joueur} from "../models/equipe_joueur";
   providedIn: 'root'
 })
 export class EquipeService {
-  static ekip_joueurs=9;
-  equipe: Equipe = <Equipe>{}
-  joueur: Joueur = <Joueur>{}
+  ekip_joueur:number=0;
+   ekip =0;
+  equipe: Equipe;
+  joueur: Joueur
   constructor(private http:HttpClient) {
+    this.equipe = <Equipe>{}
+    this.joueur = <Joueur>{}
   }
 
-  addEquipe(equipe:Equipe):Observable<Equipe>{
-  const url = 'https://equipe02.chez-wam.info:443/api/equipes'
+
+  getJoueur(pseudo:string){
+    const urlJoueur = 'https://equipe02.chez-wam.info:443/api/joueurs?pseudo=eq.'+ pseudo;
+    return this.http.get<Joueur[]>(urlJoueur).pipe(map(rep => rep[0]));
+  }
+
+  getEquipe(nom:string){
+    const urlEquipe = 'https://equipe02.chez-wam.info:443/api/equipes?nom=eq.'+nom
+    return this.http.get<Equipe[]>(urlEquipe).pipe(map(rep => rep[0]));
+  }
+  getEquipes(){
+    const urlEquipe = 'https://equipe02.chez-wam.info:443/api/equipes'
+    return this.http.get<Equipe[]>(urlEquipe);
+  }
+
+  getEquipe_joueurs(){
+    const url = 'https://equipe02.chez-wam.info:443/api/equipes_joueurs'
+    return this.http.get<Equipe_joueur[]>(url);
+  }
+
+  addEquipe(nom:string){
+    const url = 'https://equipe02.chez-wam.info:443/api/equipes'
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
+    console.log(nom)
+    this.getEquipes().subscribe(elt=> this.ekip=elt.length+1);
+    let equipe:Equipe = {id_equipe:this.ekip,nom:nom};
     return this.http.post<Equipe>(url, equipe, httpOptions);
   }
 
-  addEquipe_Joueurs(nom:string,pseaudo:string):Observable<Equipe_joueur>{
+  addEquipe_Joueurs(nom:string,pseaudo:string){
 
-    const urlJoueur = 'https://equipe02.chez-wam.info:443/api/joueurs?nom=ed.'+ pseaudo;
-    this.http.get<Joueur[]>(urlJoueur).pipe(map(rep => rep[0])).subscribe(elt => this.joueur=elt);
-    const urlEquipe = 'https://equipe02.chez-wam.info:443/api/joueurs?nom=ed.'+nom;
-    this.http.get<Equipe[]>(urlEquipe).pipe(map(rep => rep[0])).subscribe(elt =>this.equipe=elt );
+    this.getJoueur(pseaudo).subscribe(elt => this.joueur=elt);
+    this.getEquipe(nom).subscribe(elt=> this.equipe=elt);
+    if(this.equipe===undefined){
+      this.addEquipe(nom).subscribe(elt => this.equipe=elt );
+    }
+    console.log(this.equipe)
     const url = 'https://equipe02.chez-wam.info:443/api/equipes_joueurs'
+    this.getEquipe_joueurs().subscribe(elt => this.ekip_joueur=elt.length+2);
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
-    let equipe_joueur:Equipe_joueur = {id_equipe_joueur:EquipeService.ekip_joueurs++,id_equipe:this.equipe.id_equipe,id_joueur:this.joueur.id_joueur}
+    console.log(this.equipe.id_equipe)
+    let equipe_joueur:Equipe_joueur = {id_equipe_joueur:this.ekip_joueur,id_equipe:this.equipe.id_equipe,id_joueur:this.joueur.id_joueur};
     return this.http.post<Equipe_joueur>(url, equipe_joueur, httpOptions);
+    /*const url = 'https://equipe02.chez-wam.info:443/api/equipes_joueurs?id_equipe_joueur=eq.9'
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.delete(url, httpOptions);*/
 }
 }
 
