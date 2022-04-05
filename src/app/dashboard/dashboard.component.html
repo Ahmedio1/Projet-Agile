@@ -1,11 +1,11 @@
 <mat-grid-list cols="3" rowHeight="3:4">
   <mat-grid-tile>
-    <mat-card>
+    <mat-card [routerLink]="['/classement/']">
       <img mat-card-image class="bg-green-700 rounded-lg transition duration-500 hover:scale-125 hover:cursor-pointer" src="assets/images/pp.png">
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card [routerLink]="['/question/7']">
+    <mat-card [routerLink]="['/quizz']">
       <img mat-card-image class="bg-red-700 rounded-lg transition duration-500 hover:scale-125 hover:cursor-pointer" src="assets/images/pp.png">
     </mat-card>
   </mat-grid-tile>
