@@ -14,7 +14,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
-import { NuggetsComponent } from './nuggets.component';
+import {RegistrationComponent} from "./registration/registration.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { NuggetsComponent } from './nuggets.component';
     QuestionsComponent,
     ReponsesComponent,
     NotFoundComponent,
-    NuggetsComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
