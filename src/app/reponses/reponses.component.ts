@@ -7,7 +7,7 @@ import {Reponse} from '../models/reponse';
   styleUrls: ['./reponses.component.css']
 })
 export class ReponsesComponent implements OnInit {
-  @Input() reponse: Reponse = <Reponse>{};
+  @Input() reponse: Reponse = {} as Reponse;
 
   constructor() { }
 
