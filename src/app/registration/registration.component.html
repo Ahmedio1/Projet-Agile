@@ -11,7 +11,7 @@
 
 <label for="pseudo">Pseudo : </label>
   <input  id="pseudo" type="text" placeholder="ex: mohammed" #pseudo>
-<button (click)="addJoueur(groupe,pseudo)">ajoutez joueur</button>
+<button (click)="addJoueur(pseudo)">ajoutez joueur</button>
 <p *ngIf="message!=''" >
   {{message}}
 </p>
@@ -21,7 +21,9 @@
   <li *ngFor="let jouer of lesJoueurs"> {{jouer}}</li>
 </ul>
 
-<button (click)="addEquipe_Joueur(groupe)">Création de l'équipe </button>
+<button>Création de l'équipe </button>
+<br>
+<button (click)="afficherLesJoueurs()"> test afficher équipe dans le terminal </button>
 
 
 
