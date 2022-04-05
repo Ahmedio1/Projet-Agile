@@ -9,7 +9,7 @@ import {RegistrationComponent} from "./registration/registration.component";
 
 const routes: Routes = [
   {path: '', component:DashboardComponent},
-  {path: 'question/:id', component:QuestionsComponent},
+  {path: 'question/:poivre/:nugget', component:QuestionsComponent},
   {path: 'quizz', component:QuizzComponent},
   {path: 'registration', component:RegistrationComponent},
   {path: 'classement', component:ClassementComponent},
