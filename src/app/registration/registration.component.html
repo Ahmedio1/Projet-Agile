@@ -1,29 +1,42 @@
-<h1> Création d'une équipe </h1>
-<p>choisir le nom du groupe</p>
-
-<label for="groupe">Groupe : </label>
-<input id="groupe" type="text" placeholder="ex:ketchup"
-       #groupe>
-
-<br>
-<br>
-<p >entrez les joeurs de votre groupe </p>
-
-<label for="pseudo">Pseudo : </label>
-  <input  id="pseudo" type="text" placeholder="ex: mohammed" #pseudo>
-<button (click)="addJoueur(pseudo)">ajoutez joueur</button>
-<p *ngIf="message!=''" >
-  {{message}}
-</p>
 
 
+<div class="equipe1">
+  <h1> Création de l'équipe 1 </h1>
+  <form (submit)="addJoueur(groupe,pseudo)">
+    <label for="groupe">Groupe : </label>
+    <input id="groupe" type="text" placeholder="saisir le nom du groupe" #groupe>
+    <label for="pseudo">Pseudo : </label>
+    <input  id="pseudo" type="text" placeholder="pseudo du joueur" #pseudo>
+    <input type="submit" value="ajouter le joueur ">
+  </form>
+  <p *ngIf="message!=''" >
+    {{message}}
+  </p>
 <ul>
   <li *ngFor="let jouer of lesJoueurs"> {{jouer}}</li>
 </ul>
 
-<button>Création de l'équipe </button>
-<br>
-<button (click)="afficherLesJoueurs()"> test afficher équipe dans le terminal </button>
+</div>
+
+<div class="equipe2">
+
+  <h1> Création de l'équipe 2 </h1>
+  <form (submit)="addJoueur2(groupe2,pseudo2)">
+    <label for="groupe2">Groupe : </label>
+    <input id="groupe2" type="text" placeholder="saisir le nom du groupe" #groupe2>
+    <label for="pseudo2">Pseudo : </label>
+    <input  id="pseudo2" type="text" placeholder="pseudo du joueur" #pseudo2>
+    <input type="submit" value="ajouter le joueur">
+  </form>
+  <p *ngIf="message2!=''" >
+    {{message2}}
+  </p>
+  <ul>
+    <li *ngFor="let jouer of lesJoueurs2"> {{jouer}}</li>
+  </ul>
+</div>
+
+
 
 
 
