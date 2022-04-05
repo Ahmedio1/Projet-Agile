@@ -30,9 +30,10 @@ export class RegistrationComponent implements OnInit {
       this.lesJoueurs.push(pseudo.value);
       this.message='';
     }
-    this.equipe.addEquipe_Joueurs(nom.value,pseudo.value).subscribe(equipe => this.equipeJ.push(equipe));
+    this.equipe.addEquipe_Joueurs(nom.value,pseudo.value);
 
     this.joueur=""
+    console.log(this.equipeJ)
     return false;
   }
   addEquipe_Joueur(nom:HTMLInputElement) {
@@ -40,6 +41,8 @@ export class RegistrationComponent implements OnInit {
     for (let pers of this.lesJoueurs){
       this.equipe.addEquipe_Joueurs(nom.value,pers);
     }
+
+    console.log(this.equipeJ);
   }
   }
   inlesJoueurs(joueur:string):boolean{
