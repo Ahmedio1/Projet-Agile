@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs';
 import {Question} from '../models/question';
 import {QuestionsService} from '../services/questions.service';
 import {logger} from "codelyzer/util/logger";
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Reponse} from '../models/reponse';
 import {ReponsesService} from '../services/reponses.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -24,7 +24,7 @@ export class QuestionsComponent implements OnInit {
   arrayNuggets: Observable<any>[] = [];
   array: Object[] = [];
 
-  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService, private http: HttpClient) { }
+  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService, private http: HttpClient, private router:Router) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -33,7 +33,7 @@ export class QuestionsComponent implements OnInit {
       this.question = question;
       this.reponsesService.getReponses(id).subscribe(reponses => {
         this.reponses = reponses;
-        
+
       });
     });
     this.questionsService.getQuestions().subscribe(question => {
@@ -44,17 +44,18 @@ export class QuestionsComponent implements OnInit {
     this.loading = false;
   }
 
-  show(){
-    console.log(this.questions)
-  }
-
   getChoixJoueur(reponse: Reponse) {
     this.reponses.forEach(x =>{
       if(x.bonne_reponse)
         this.laReponse = x;
     });
     console.log(reponse === this.laReponse);
-    return (reponse === this.laReponse);
+    if(reponse === this.laReponse){
+      this.router.navigate(['question/'+this.question.id_question++]);
+      return reponse === this.laReponse
+    }
+    this.router.navigate(['question/'+this.question.id_question++]);
+    return reponse === this.laReponse
   }
 
   getRandomint(max: number){
@@ -66,6 +67,6 @@ export class QuestionsComponent implements OnInit {
     }
     return arr;
   }
-  
+
 
 }

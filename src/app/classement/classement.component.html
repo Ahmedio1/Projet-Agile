@@ -1,0 +1,95 @@
+<!-- Classement des joueurs -->
+
+<mat-tab-group>
+    <mat-tab label="Meilleurs Joueurs">
+      <mat-card style="text-align: center">
+        <mat-card-title>Le classement des meilleurs joueurs :</mat-card-title>
+        <table mat-table [dataSource]="dataSourcePlayers" class="mat-elevation-z8" matSort>
+          <!-- Pseudo -->
+          <ng-container matColumnDef="pseudo">
+            <th mat-header-cell *matHeaderCellDef> Joueur </th>
+            <td mat-cell *matCellDef="let element"> {{element.pseudo}} </td>
+          </ng-container>
+
+          <!-- Score -->
+          <ng-container matColumnDef="score">
+            <th   mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let element" mat-sort-header> {{element.score}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsPlayers"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsPlayers;"></tr>
+        </table>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Pires Joueurs">
+      <mat-card style="text-align: center">
+        <mat-card-title>Le classement des pires joueurs :</mat-card-title>
+        <table mat-table [dataSource]="dataSourcePlayers" class="mat-elevation-z8" matSort>
+          <!-- Pseudo -->
+          <ng-container matColumnDef="pseudo">
+            <th mat-header-cell *matHeaderCellDef> Joueur </th>
+            <td mat-cell *matCellDef="let element"> {{element.pseudo}} </td>
+          </ng-container>
+
+          <!-- Score -->
+          <ng-container matColumnDef="score">
+            <th   mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let element" mat-sort-header> {{element.score}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsPlayers"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsPlayers;"></tr>
+        </table>
+      </mat-card>
+    </mat-tab>
+
+<!-- Classement des équipes -->
+
+  <mat-tab label="Meilleurs Equipes">
+    <mat-card style="text-align: center">
+      <mat-card-title>Le classement des meilleurs équipes :</mat-card-title>
+      <table mat-table [dataSource]="dataSourceTeams" class="mat-elevation-z8" matSort>
+        <!-- Pseudo -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        </ng-container>
+        <!-- Score -->
+        <ng-container matColumnDef="score">
+          <th   mat-header-cell *matHeaderCellDef> Score </th>
+          <td mat-cell *matCellDef="let element" mat-sort-header> {{sommePointsEquipes(element.id_equipe)}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTeams"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTeams;"></tr>
+      </table>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Pires Equipes">
+    <mat-card style="text-align: center">
+      <mat-card-title>Le classement des pires équipes :</mat-card-title>
+      <table mat-table [dataSource]="dataSourceTeams" class="mat-elevation-z8" matSort>
+        <!-- Pseudo -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        </ng-container>
+        <!-- Score -->
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef> Score </th>
+          <td mat-cell *matCellDef="let element" mat-sort-header> {{sommePointsEquipes(element.id_equipe)}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTeams"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTeams;"></tr>
+      </table>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+
+<!-- Classement des équipes -->
+
+
+

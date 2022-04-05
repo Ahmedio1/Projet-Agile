@@ -8,13 +8,17 @@ import { QuestionsComponent } from './questions/questions.component';
 import { ReponsesComponent } from './reponses/reponses.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {HttpClientModule} from '@angular/common/http';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatTableModule} from "@angular/material/table";
-import {MatIconModule} from "@angular/material/icon";
-import {RegistrationComponent} from "./registration/registration.component";
+import {MatCardModule} from "@angular/material/card";
+import {HttpClientModule} from "@angular/common/http";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { FormsModule } from '@angular/forms';
+import { QuizzComponent } from './quizz/quizz.component';
+import { HttpClient } from '@angular/common/http';
+import { ClassementComponent } from './classement/classement.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import {RegistrationComponent} from "./registration/registration.component";
     QuestionsComponent,
     ReponsesComponent,
     NotFoundComponent,
-    RegistrationComponent,
+    QuizzComponent,
+    ClassementComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +38,10 @@ import {RegistrationComponent} from "./registration/registration.component";
     MatGridListModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    FormsModule,
+    MatTabsModule,
     MatTableModule,
-    MatIconModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
