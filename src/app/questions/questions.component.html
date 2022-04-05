@@ -3,15 +3,15 @@
 </ng-container>
 
 <mat-card *ngIf="!loading" style="text-align: center">
-  <mat-card-title>La Question  {{ question.id_question }} :</mat-card-title>
+  <mat-card-title>La Question  {{ this.val + 1 }} :</mat-card-title>
   <mat-card-content>
-    {{ question.libelle }}
+    {{ this.array[this.val].libelle }}
   </mat-card-content>
 </mat-card>
 
 <mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loading">
     <mat-grid-tile *ngFor="let reponse of reponses">
-      <button (click) = getChoixJoueur(reponse)>
+      <button (click) = "getChoixJoueur(reponse)">
         <app-reponses [reponse]="reponse"></app-reponses>
       </button>
     </mat-grid-tile>
