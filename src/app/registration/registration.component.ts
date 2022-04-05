@@ -8,22 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class RegistrationComponent implements OnInit {
   groupe:string="test";
   lesJoueurs:string[]=[];
-  joueur:string ="";
+
   message:string='';
 
   addJoueur(pseudo:HTMLInputElement):boolean{
-    this.joueur=pseudo.value;
 
     if(this.inlesJoueurs(pseudo.value)){
       this.message= "le joueur est deja dans l'équipe ";
     }
-    else if(this.joueur!=""){
+    else if(pseudo.value!=""){
 
       this.lesJoueurs.push(pseudo.value);
       this.message='';
-
     }
-
     return false;
   }
   addEquipe(){
@@ -45,6 +42,10 @@ export class RegistrationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  afficherLesJoueurs():void{
+    for(let element of this.lesJoueurs){console.log(element +'\n');}
+
   }
 
 }
