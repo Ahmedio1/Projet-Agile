@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs';
 import {Question} from '../models/question';
 import {QuestionsService} from '../services/questions.service';
 import {logger} from "codelyzer/util/logger";
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Reponse} from '../models/reponse';
 import {ReponsesService} from '../services/reponses.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -20,41 +20,37 @@ export class QuestionsComponent implements OnInit {
   reponses: Reponse[] = [];
   laReponse: Reponse = <Reponse>{};
   loading: boolean = false;
-  arraySelPoivre: Observable<any>[] = [];
-  arrayNuggets: Observable<any>[] = [];
+  arraySelPoivre: Object[] = [];
+  arrayNuggets: Object[] = [];
+  arrayRandomSelPoivre: Object[] = [];
+  arrayRandomNuggets: Object[] = [];
   array: Object[] = [];
 
-  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService, private http: HttpClient, private router:Router) { }
+  poivre: number = 0;
+  nugget: number = 0;
+  miam: number = 0;
+  static poivre: number;
+  static nugget: number;
+  static miam: number;
+
+  constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService) { }
 
   ngOnInit(): void {
     this.loading = true;
-    const id: number = +(this.route.snapshot.paramMap.get('id') || 0);
-    this.questionsService.getQuestion(id).subscribe(question => {
-      this.question = question;
-      this.reponsesService.getReponses(id).subscribe(reponses => {
-        this.reponses = reponses;
-      });
-    });
     this.questionsService.getQuestions().subscribe(question => {
       question.forEach(element => {
         this.questions.push(element);
       });
+      this.nugget = + (this.route.snapshot.paramMap.get('nugget') || 0);
+      this.poivre = + (this.route.snapshot.paramMap.get('poivre') || 0);
+      this.getPoivre();
+      this.getNuggets();
+      this.showArray();
+      this.loading = false;
+      console.log(this.array[0]);
+      this.array.forEach(element => {
+        console.log(element.id_question);
     });
-    this.loading = false;
-  }
-
-  getChoixJoueur(reponse: Reponse) {
-    this.reponses.forEach(x =>{
-      if(x.bonne_reponse)
-        this.laReponse = x;
-    });
-    console.log(reponse === this.laReponse);
-    if(reponse === this.laReponse){
-      this.router.navigate(['question/'+this.question.id_question++]);
-      return reponse === this.laReponse
-    }
-    this.router.navigate(['question/'+this.question.id_question++]);
-    return reponse === this.laReponse
   }
 
   getRandomint(max: number){
@@ -66,6 +62,50 @@ export class QuestionsComponent implements OnInit {
     }
     return arr;
   }
+
+  //get random questions with id_categorie equal to 2 and push the data in array and console.log it
+  getPoivre(){
+    this.questions.forEach(element => {
+      if(element.id_catetgorie == 2){
+        this.arraySelPoivre.push(element);
+      }
+    });
+    this.getRandomPoivre();
+  }
+
+  //get random questions with id_categorie equal to 1 and push the data in array and console.log it
+  getNuggets(){
+    this.questions.forEach(element => {
+      if(element.id_catetgorie == 1){
+        this.arrayNuggets.push(element);
+      }
+    });
+    this.getRandomNuggets();
+  }
+
+  getRandomPoivre(){
+
+    //shuffle the array arraySelPoivre and push this.poivre element in array
+    this.arraySelPoivre.sort(() => Math.random() - 0.5);
+    for(var i = 0; i < this.poivre; i++){
+      this.array.push(this.arraySelPoivre[i]);
+    }
+  }
+
+  getRandomNuggets(){
+
+    this.arrayNuggets.sort(() => Math.random() - 0.5);
+    for(var i = 0; i < this.nugget; i++){
+      this.array.push(this.arrayNuggets[i]);
+    }
+
+  }
+
+  //log all the data in arraynuggets and arrayselpoivre
+  showArray(){
+    console.log(this.array);
+  }
+
 
 
 }
