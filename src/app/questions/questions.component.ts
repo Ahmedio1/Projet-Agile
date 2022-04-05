@@ -33,7 +33,6 @@ export class QuestionsComponent implements OnInit {
       this.question = question;
       this.reponsesService.getReponses(id).subscribe(reponses => {
         this.reponses = reponses;
-
       });
     });
     this.questionsService.getQuestions().subscribe(question => {
