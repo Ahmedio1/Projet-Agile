@@ -20,11 +20,11 @@ export class QuestionsComponent implements OnInit {
   reponses: Reponse[] = [];
   laReponse: Reponse = <Reponse>{};
   loading: boolean = false;
-  arraySelPoivre: Object[] = [];
-  arrayNuggets: Object[] = [];
+  arraySelPoivre: Question[] = [];
+  arrayNuggets: Question[] = [];
   arrayRandomSelPoivre: Object[] = [];
   arrayRandomNuggets: Object[] = [];
-  array: Object[] = [];
+  array: Question[] = [];
 
   poivre: number = 0;
   nugget: number = 0;
@@ -47,9 +47,11 @@ export class QuestionsComponent implements OnInit {
       this.getNuggets();
       this.showArray();
       this.loading = false;
-      console.log(this.array[0]);
-      this.array.forEach(element => {
-        console.log(element.id_question);
+      console.log(this.array[0].id_question);
+      this.question = this.array[0];
+      this.reponsesService.getReponses(this.question.id_question).subscribe(reponse => {
+        this.reponses = reponse;
+      });
     });
   }
 

@@ -3,9 +3,9 @@
 </ng-container>
 
 <mat-card *ngIf="!loading" style="text-align: center">
-  <mat-card-title>La Question  {{ question.id_question }} :</mat-card-title>
+  <mat-card-title>La Question  {{ this.array[0].id_question }} :</mat-card-title>
   <mat-card-content>
-    {{ question.libelle }}
+    {{ this.array[0].libelle }}
   </mat-card-content>
 </mat-card>
 
