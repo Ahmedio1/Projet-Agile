@@ -47,6 +47,9 @@ export class QuestionsComponent implements OnInit {
       this.getNuggets();
       this.showArray();
       this.loading = false;
+      console.log(this.array[0]);
+      this.array.forEach(element => {
+        console.log(element.id_question);
     });
   }
 
