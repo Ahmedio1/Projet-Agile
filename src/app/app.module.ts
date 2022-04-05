@@ -19,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {RegistrationComponent} from "./registration/registration.component";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -31,19 +32,20 @@ import {RegistrationComponent} from "./registration/registration.component";
     ClassementComponent,
     RegistrationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatGridListModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    FormsModule,
-    MatTabsModule,
-    MatTableModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatGridListModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+        MatTabsModule,
+        MatTableModule,
+        MatSortModule,
+        MatButtonModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

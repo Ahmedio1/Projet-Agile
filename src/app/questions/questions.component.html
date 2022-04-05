@@ -3,6 +3,7 @@
 </ng-container>
 
 <mat-card *ngIf="!loading" style="text-align: center">
+  <mat-card-title>{{ this.message }} :</mat-card-title>
   <mat-card-title>La Question  {{ this.val + 1 }} :</mat-card-title>
   <mat-card-content>
     {{ this.array[this.val].libelle }}

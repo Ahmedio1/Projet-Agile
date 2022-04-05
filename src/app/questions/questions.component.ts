@@ -24,8 +24,10 @@ export class QuestionsComponent implements OnInit {
   arrayNuggets: Question[] = [];
   arrayRandomSelPoivre: Object[] = [];
   arrayRandomNuggets: Object[] = [];
-  array: Question[] = [];
-
+  array: Question[] = []
+  score1:number=0;
+  score2:number=0;
+  nbr:number = 1;
   val: number = 0;
   poivre: number = 0;
   nugget: number = 0;
@@ -33,6 +35,8 @@ export class QuestionsComponent implements OnInit {
   static poivre: number;
   static nugget: number;
   static miam: number;
+  msg:string[]=['A votre tour Equipe 1!','A vous Equipe 2 !']
+  message:string=this.msg[0];
 
   constructor(private questionsService: QuestionsService, private route: ActivatedRoute, private reponsesService: ReponsesService) { }
 
@@ -57,20 +61,50 @@ export class QuestionsComponent implements OnInit {
     }
 
   getChoixJoueur(reponse: Reponse) {
-    this.val += 1;
-    this.question = this.array[this.val];
-    this.reponsesService.getReponses(this.question.id_question).subscribe(reponse => {
-      this.reponses = reponse;
-    });
-    this.reponses.forEach(x =>{
-      if(x.bonne_reponse)
-        this.laReponse = x;
-    });
-    console.log(reponse === this.laReponse);
-    if(reponse === this.laReponse){
+    if(this.val+1 < this.array.length) {
+      this.val += 1;
+      if (this.nbr%2==0){
+        this.message=this.msg[0];
+        console.log(this.message)
+        this.nbr=1;
+      }
+      else{
+        this.message=this.msg[1];
+        console.log(this.message)
+        this.nbr=2
+      }
+
+
+      this.question = this.array[this.val];
+      this.reponsesService.getReponses(this.question.id_question).subscribe(reponse => {
+        this.reponses = reponse;
+      });
+      this.reponses.forEach(x =>{
+        if(x.bonne_reponse)
+          if (this.nbr+1==2){
+            this.score1++
+            this.laReponse = x;
+          }
+          else{
+            this.score2++
+            this.laReponse = x;
+          }
+      });
+
+      if (this.val ==this.array.length){
+        console.log(this.score1," ",this.score2);
+      }
+      console.log(reponse === this.laReponse);
+      if(reponse === this.laReponse){
+        return reponse === this.laReponse
+      }
       return reponse === this.laReponse
+
+    } else {
+      console.log(this.score1, this.score2)
+      return true;
     }
-    return reponse === this.laReponse
+
 
   }
 
