@@ -20,6 +20,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {RegistrationComponent} from "./registration/registration.component";
 import {MatButtonModule} from "@angular/material/button";
+import {FormulaireComponent} from "./formulaire/formulaire.component";
+import {PhotoComponent} from "./photo/photo.component";
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import {MatButtonModule} from "@angular/material/button";
     QuizzComponent,
     ClassementComponent,
     RegistrationComponent,
+    FormulaireComponent,
+    PhotoComponent,
   ],
     imports: [
         BrowserModule,
